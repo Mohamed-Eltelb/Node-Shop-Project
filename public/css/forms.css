@@ -1,20 +1,53 @@
+.product-form {
+  /* background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); */
+  /* border: 1px solid var(--color-border); */
+  /* border-radius: var(--radius-md); */
+  /* padding: var(--space-6); */
+  /* box-shadow: var(--shadow-sm); */
+  display: grid;
+  gap: var(--space-5);
+}
+
 .form-control {
-    margin: 1rem 0;
+  margin: 0; /* handled by form grid gap */
 }
 
 .form-control label,
-.form-control input {
-    display: block;
-    width: 100%;
-    margin-bottom: 0.25rem;
+.form-control input,
+.form-control textarea {
+  display: block;
+  width: 100%;
 }
 
-.form-control input {
-    border: 1px solid #a1a1a1;
-    font: inherit;
-    border-radius: 2px;
+.form-control label {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
 }
 
-.form-control input:focus {
-    outline-color: #00695c;
+.form-control input,
+.form-control textarea {
+  border: 1px solid var(--color-border);
+  background: rgba(255,255,255,0.04);
+  color: var(--color-text);
+  font: inherit;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+}
+
+.form-control textarea { min-height: 6rem; resize: vertical; }
+.form-control input::placeholder,
+.form-control textarea::placeholder { color: var(--color-text-muted); }
+
+.form-control input:focus,
+.form-control textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* Button alignment */
+.product-form .btn { width: 100%; }
+@media (min-width: 480px) {
+  .product-form .btn { width: auto; justify-self: end; }
 }
