@@ -5,9 +5,34 @@ exports.getAddProduct = (req, res, next) => {
     docTitle: "Add Product",
     path: "/admin/add-product",
     formsCSS: true,
-    productCSS: true,
     activeAddProduct: true,
   });
+};
+
+exports.getEditProduct = (req, res, next) => {
+  const prodId = parseInt(req.params.productId, 10);
+  Product.findById(prodId, (product) => {
+    res.render("admin/edit-product", {
+      docTitle: "Edit Product",
+      path: "/admin/edit-product",
+      formsCSS: true,
+      product: product,
+    });
+  });
+};
+
+exports.postEditProduct = (req, res, next) => {
+  const prodId = parseInt(req.params.productId, 10);
+  const updatedProduct = new Product(
+    req.body.title,
+    req.body.imageUrl,
+    req.body.description,
+    req.body.price,
+    // req.body.inTheCart
+  );
+  updatedProduct.id = prodId;
+  Product.editProduct(prodId, updatedProduct);
+  res.redirect("/admin/products");
 };
 
 exports.postAddProduct = (req, res, next) => {
@@ -17,7 +42,7 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const product = new Product(title, imageUrl, description, price);
   product.save();
-  res.redirect("/");
+  res.redirect("/products");
 };
 
 exports.getProducts = (req, res, next) => {
@@ -53,6 +78,7 @@ exports.getCart = (req, res, next) => {
       path: "/cart",
       hasProducts: cartItems.length > 0,
       cartItems: cartItems,
+      totalPrice: cartItems.reduce((total, item) => total + parseFloat(item.price) * item.quantity, 0).toFixed(2),
     });
   });
 };
@@ -86,6 +112,13 @@ exports.postAddToCart = (req, res, next) => {
   res.redirect("/cart");
 }
 
+exports.updateQuantityInCart = (req, res, next) => {
+  const prodId = parseInt(req.body.productId, 10);
+  const newQuantity = parseInt(req.body.quantity, 10);
+  Product.updateQuantity(prodId, newQuantity);
+  res.redirect("/cart");
+}
+
 exports.postRemoveFromCart = (req, res, next) => {
   const prodId = parseInt(req.body.productId, 10);
   Product.removeFromCart(prodId);
@@ -94,8 +127,7 @@ exports.postRemoveFromCart = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = parseInt(req.params.productId, 10);
-  Product.fetchAll((products) => {
-    const product = products.find(p => p.id === prodId);
+  Product.findById(prodId, (product) => {
     if (product) {
       res.render("shop/product-detail", {
         product: product,

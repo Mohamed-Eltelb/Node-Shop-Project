@@ -6,12 +6,13 @@
 
 .product-item {
   width: 100%;
-  max-width: 100%;
+  max-width: 400px;
 }
 
 .product_title {
   font-size: 1.15rem;
   text-align: center;
+  margin: 0;
 }
 
 .product_price {
@@ -19,6 +20,7 @@
   color: var(--color-text);
   font-weight: 700;
   margin-bottom: 0.5rem;
+  margin-top: 0;
 }
 
 .product_description {
@@ -57,3 +59,102 @@
   margin-bottom: 1rem;
   color: var(--color-text-muted);
 }
+
+/* Featured products */
+.featured h2 {
+  margin-bottom: 1rem;
+}
+.featured .grid {
+  justify-content: center;
+}
+
+/* Product detail additions (keeps compatibility) */
+.product-detail {
+  padding: 1rem 0;
+}
+.product-detail__container {
+  gap: 1rem;
+}
+
+/* Small utility tweaks */
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-700)
+  );
+}
+.btn-disabled {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+@media (min-width: 720px) {
+  .hero {
+    padding: 3rem;
+  }
+}
+
+.product_quantity {
+  margin-top: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Cart header and checkout */
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.cart-summary {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.cart-total {
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+.checkout-btn {
+  padding: 0.5rem 0.85rem;
+}
+
+@media (max-width: 720px) {
+  .cart-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cart-summary {
+    justify-content: space-between;
+  }
+}
+
+/* Quantity update form inside cart cards */
+.card_content form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.card_content input[type="number"] {
+  width: 4.5rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: var(--color-text);
+}
+/* Danger/remove button variant */
+.btn.danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 8px 20px rgba(220,38,38,0.18);
+}
+.btn.danger:hover { filter: brightness(0.95); }
