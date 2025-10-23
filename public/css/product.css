@@ -152,13 +152,6 @@
 }
 
 /* Actions footer inside each card */
-.card_actions {
-  padding: 0.75rem 1rem;
-  display: flex;
-  gap: 0.65rem;
-  align-items: center;
-  /* justify-content: space-between; */
-}
 .card_actions form {
   margin: 0;
 }
@@ -183,6 +176,7 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   /* padding: 0.35rem 0.6rem; */
   border-radius: 8px;
+  transition: background 0.1s ease-in-out;
 }
 .update-qty-form .btn--outline:hover {
   background: rgba(255, 255, 255, 0.03);
