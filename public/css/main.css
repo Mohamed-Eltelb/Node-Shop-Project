@@ -68,7 +68,7 @@ body {
 
 main {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
   padding: var(--space-6);
   margin: 0 auto;
 }
@@ -147,8 +147,10 @@ main {
 
 /* Grid */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 400px);
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, 400px); */
+  display: flex;
+  flex-wrap: wrap;
   gap: clamp(1rem, 3vw, 2rem);
   align-items: stretch;
 }

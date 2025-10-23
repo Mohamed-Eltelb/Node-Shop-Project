@@ -127,7 +127,7 @@ module.exports = class Product {
 
         cb(detailedCartItems);
       });
-  });
+    });
   }
 
   static findById(id, cb) {

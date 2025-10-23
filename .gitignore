@@ -1,9 +1,6 @@
 # Node dependencies
 node_modules/
 
-# Cart
-data/cart.json
-
 # Logs and diagnostics
 logs
 *.log
